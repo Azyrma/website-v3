@@ -256,7 +256,7 @@ function App() {
         {/* Lecture Information */}
         <Section title="Lecture Information">
           <p className="body-sm">
-            Congratulations on finishing the course! There are weekly quizzes and Jupyter Notebooks that you may solve as
+            Congratulations on finishing the course!! There are weekly quizzes and Jupyter Notebooks that you may solve as
             an exercise. I would recommend to do the weekly quizzes at least,
             since they will give you the most benefit for the exam.
           </p>
