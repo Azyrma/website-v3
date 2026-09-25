@@ -1,0 +1,229 @@
+/* Portfolio pages. All classes are pf- prefixed so they can't collide with course pages.
+   Two colors only: --pf-bg and --pf-fg. Other shades are --pf-fg at lower opacity. */
+
+.pf {
+  --pf-bg:    #1a1a1a;
+  --pf-fg:    #f2f0eb;
+  --pf-muted: color-mix(in srgb, var(--pf-fg) 70%, transparent);
+  --pf-line:  color-mix(in srgb, var(--pf-fg) 15%, transparent);
+  --pf-serif: 'Source Serif 4 Variable', Georgia, serif;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--pf-bg);
+  color: var(--pf-fg);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.pf p { line-height: 28px; }
+.pf p + p { margin-top: 28px; }
+
+.pf a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--pf-line);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+
+.pf a:hover { text-decoration-color: currentColor; }
+
+.pf em {
+  font-family: var(--pf-serif);
+  font-style: italic;
+  font-size: 1.06em;
+}
+
+.pf ::selection { background: var(--pf-fg); color: var(--pf-bg); }
+
+/* ── Layout ─────────────────────────────────────────── */
+
+.pf-header,
+.pf-main,
+.pf-footer {
+  width: 100%;
+  max-width: 688px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.pf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 96px;
+}
+
+.pf .pf-name {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pf-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  font-size: 14px;
+}
+
+.pf .pf-nav a {
+  color: var(--pf-muted);
+  text-decoration: none;
+}
+
+.pf .pf-nav a:hover,
+.pf .pf-nav a[aria-current="page"] { color: var(--pf-fg); }
+
+.pf-main {
+  flex: 1;
+  padding-top: 56px;
+  padding-bottom: 96px;
+}
+
+.pf-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 48px;
+  font-size: 14px;
+}
+
+.pf-social {
+  display: flex;
+  gap: 16px;
+}
+
+.pf .pf-social a {
+  display: flex;
+  color: var(--pf-muted);
+  transition: color 0.15s;
+}
+
+.pf .pf-social a:hover { color: var(--pf-fg); }
+
+.pf-social svg { width: 18px; height: 18px; }
+
+/* Page transition: each direct child fades up, slightly staggered. */
+
+@keyframes pf-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.pf-main > * { animation: pf-in 0.45s ease-out both; }
+.pf-main > *:nth-child(2) { animation-delay: 0.08s; }
+.pf-main > *:nth-child(3) { animation-delay: 0.16s; }
+
+/* ── Content ────────────────────────────────────────── */
+
+.pf-section + .pf-section,
+.pf-section + .pf-columns,
+.pf-columns + .pf-section { margin-top: 84px; }
+
+.pf-label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+h1.pf-label { font-weight: 500; }
+
+.pf-muted { color: var(--pf-muted); }
+.pf-small { font-size: 14px; color: var(--pf-muted); }
+
+/* Three-column index on the home page */
+
+.pf-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.pf-item + .pf-item { margin-top: 24px; }
+.pf-item p { margin: 0; }
+
+.pf-arrow {
+  margin-left: 6px;
+  font-size: 14px;
+  color: var(--pf-muted);
+}
+
+/* Projects */
+
+.pf-entry + .pf-entry { margin-top: 40px; }
+.pf-entry p + p { margin-top: 0; }
+
+/* Experience / stack rows */
+
+.pf-row {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 16px;
+}
+
+.pf-row + .pf-row { margin-top: 20px; }
+.pf-row p + p { margin-top: 0; }
+.pf-row .pf-small { line-height: 28px; }
+
+/* Teaching cards */
+
+.pf-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.pf-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--pf-line);
+  border-radius: 8px;
+}
+
+.pf a.pf-card {
+  text-decoration: none;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.pf a.pf-card:hover {
+  border-color: var(--pf-muted);
+  transform: translateY(-2px);
+}
+
+.pf-card--off {
+  border-style: dashed;
+  color: var(--pf-muted);
+}
+
+.pf-card-title {
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.pf-card-go {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 14px;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .pf-header { padding-top: 48px; }
+  .pf-main { padding-top: 40px; padding-bottom: 64px; }
+  .pf-columns { grid-template-columns: 1fr; gap: 56px; }
+  .pf-cards { grid-template-columns: 1fr; }
+  .pf-row { grid-template-columns: 1fr; gap: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf * { animation: none !important; transition: none !important; }
+}
